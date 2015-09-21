@@ -1,0 +1,20 @@
+{
+    "name": "xakepsoft/haba-lv-api",
+    "description": "SwedBank(lv) API",
+    "authors": [
+        {
+            "name": "Евгений Грицацуев",
+            "email": "zapavednik@yandex.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": { "XakepSoft\\Banking\\": "src/" }
+    },
+    "license": "Unlicense"
+}
