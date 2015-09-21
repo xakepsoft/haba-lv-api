@@ -4,14 +4,17 @@
     use XakepSoft\Banking\HabaLV as Haba;
 
 
-    $rates = Haba::get_currency_rates(); // This is a static method so we don't need to create an object
+    $rates = Haba::get_currency_rates(); // This is a static method so the creation of an object is not neccessary
     print_r($rates);
 
 
 
-    // SwedBank code-card example
-    // Older code-cards have 24 numbers, the new ones have more than 70.
-    // These codes are not real and provided only as an example.
+    // This is a SwedBank code-card example. There are two types of SwedBank code-cards in existance.
+    // The older ones which have 24 numbers and the new ones which have more than 70.
+    //
+    // These particular codes are not real and are provided as an example.
+    // In order to be able to use HabaLV API you must fill this array with your own codes.
+    //
     $codes = array (
         1=>'435435' ,  9=>'324234' , 17=>'637990' ,
         2=>'345345' , 10=>'435434' , 18=>'234442' ,
