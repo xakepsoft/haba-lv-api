@@ -1,6 +1,6 @@
 # API for SwedBank(LV)
-Only Latvian SwedBank is supported currently. 
-Support for EE and LT will be added in future.
+Currently only Latvian SwedBank branch is supported. 
+Support for EE and LT will be added in near future.
 
 Installation
 -------------
