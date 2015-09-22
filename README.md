@@ -5,7 +5,13 @@ Support for EE and LT will be added in near future.
 Installation
 -------------
 
-These 2 tools are required: ( `netpbm`, `ocrad` )
+Make sure curl extension (`php5-curl`) is installed
+
+      sudo apt-get install php5-curl
+      sudo yum install php5-curl
+
+
+These 2 tools are also required: ( `netpbm`, `ocrad` )
 
 Install them Like this:
 
