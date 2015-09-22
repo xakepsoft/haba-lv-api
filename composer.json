@@ -1,6 +1,6 @@
 {
-    "name": "xakepsoft/habalv",
-    "description": "SwedBank(lv) API",
+    "name": "xakepsoft/haba-lv-api",
+    "description": "Swedbank API",
     "authors": [
         {
             "name": "Евгений Грицацуев",
