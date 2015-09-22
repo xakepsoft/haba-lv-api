@@ -8,6 +8,7 @@ Installation
 Make sure the curl extension (`php5-curl`) is installed
 
       sudo apt-get install php5-curl
+      
       sudo yum install php5-curl
 
 
