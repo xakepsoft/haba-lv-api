@@ -5,7 +5,7 @@ Support for EE and LT will be added in near future.
 Installation
 -------------
 
-Make sure curl extension (`php5-curl`) is installed
+Make sure the curl extension (`php5-curl`) is installed
 
       sudo apt-get install php5-curl
       sudo yum install php5-curl
