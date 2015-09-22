@@ -11,8 +11,7 @@ Make sure the curl extension (`php5-curl`) is installed
       sudo yum install php5-curl
 
 
-These 2 tools are also required: ( `netpbm`, `ocrad` )
-Install them Like this:
+These 2 tools are also required: ( `netpbm`, `ocrad` )Install them Like this:
 
       sudo apt-get install netpbm
       sudo apt-get install ocrad
