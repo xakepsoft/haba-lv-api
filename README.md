@@ -45,4 +45,4 @@ instruct composer to download the latest version
 Without Composer
 -
 
-Just download `src/HabaLV.php` and include it in your php file
+Just download [HabaLV.php](https://raw.githubusercontent.com/xakepsoft/haba-lv-api/master/src/HabaLV.php) and include it in your php file
