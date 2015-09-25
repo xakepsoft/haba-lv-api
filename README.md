@@ -22,3 +22,17 @@ or
       sudo yum install netpbm
       sudo yum install ocrad
 
+
+
+Add repository to your `composer.json` file
+
+   "repositories": [
+      { "type": "vcs", "url": "https://github.com/xakepsoft/haba-lv-api" }
+   ],
+
+Tell composer to get the latest DEV version
+
+    "require":
+    {
+        "xakepsoft/haba-lv-api" : "@dev"
+    }
