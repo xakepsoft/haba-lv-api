@@ -24,11 +24,14 @@ or
 
 
 
-Add repository to your `composer.json` file and instruct composer to download the latest version
+Add repository to your `composer.json` file 
 
-   "repositories": [
-         { "type": "vcs", "url": "https://github.com/xakepsoft/haba-lv-api" }
+   "repositories": 
+   [
+               { "type": "vcs", "url": "https://github.com/xakepsoft/haba-lv-api" }
    ],
+
+and instruct composer to download the latest version
 
     "require":
     {
