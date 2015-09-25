@@ -27,7 +27,7 @@ yum based systems
 Composer
 -
 
-Add repository to your `composer.json` file 
+Add repository to `composer.json` file 
 ```
    "repositories": 
    [
@@ -41,3 +41,8 @@ instruct composer to download the latest version
         "xakepsoft/haba-lv-api" : "@dev"
     }
 ```
+
+Without Composer
+-
+
+Just download `src/HabaLV.php` and include it in your php file
