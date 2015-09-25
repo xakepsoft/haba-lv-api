@@ -17,7 +17,7 @@ These 2 tools are also required: ( `netpbm`, `ocrad` )
       sudo apt-get install netpbm
       sudo apt-get install ocrad
 ```
-or for yum based systems
+yum based systems
 ```
       sudo yum install netpbm
       sudo yum install ocrad
@@ -34,7 +34,7 @@ Add repository to your `composer.json` file
       { "type": "vcs", "url": "https://github.com/xakepsoft/haba-lv-api" }
    ],
 ```
-and instruct composer to download the latest version
+instruct composer to download the latest version
 ```
     "require":
     {
