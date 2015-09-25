@@ -13,16 +13,19 @@ Make sure the curl extension (`php5-curl`) is installed
 
 
 These 2 tools are also required: ( `netpbm`, `ocrad` )
-
+```
       sudo apt-get install netpbm
       sudo apt-get install ocrad
-
-or
-
+```
+or for yum based systems
+```
       sudo yum install netpbm
       sudo yum install ocrad
+```
 
 
+Composer
+-
 
 Add repository to your `composer.json` file 
 ```
