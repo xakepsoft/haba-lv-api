@@ -1,5 +1,5 @@
 # Swedbank API
-Currently only Latvian SwedBank branch is supported. 
+Currently only Latvian Swedbank is supported. 
 Support for EE and LT will be added in near future.
 
 Installation
@@ -12,12 +12,13 @@ Make sure the curl extension (`php5-curl`) is installed
       sudo yum install php5-curl
 
 
-These 2 tools are also required: ( `netpbm`, `ocrad` )
+These two tools are mandatory: ( `netpbm`, `ocrad` )
+install on apt-get systems:
 ```
       sudo apt-get install netpbm
       sudo apt-get install ocrad
 ```
-yum based systems
+install on yum based systems:
 ```
       sudo yum install netpbm
       sudo yum install ocrad
@@ -42,7 +43,7 @@ instruct composer to download the latest version
     }
 ```
 
-Without Composer
+Usage without Composer
 -
 
 Just download [HabaLV.php](https://raw.githubusercontent.com/xakepsoft/haba-lv-api/master/src/HabaLV.php) and include it in your php file
