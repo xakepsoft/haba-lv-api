@@ -12,7 +12,7 @@ Make sure the curl extension (`php5-curl`) is installed
       sudo yum install php5-curl
 
 
-These two tools are mandatory: ( `netpbm`, `ocrad` )
+These two CLI tools are also mandatory: ( `netpbm`, `ocrad` )
 install on apt-get systems:
 ```
       sudo apt-get install netpbm
