@@ -13,6 +13,7 @@ Make sure the curl extension (`php5-curl`) is installed
 
 
 These two CLI tools are also mandatory: ( `netpbm`, `ocrad` )
+
 install on apt-get systems:
 ```
       sudo apt-get install netpbm
