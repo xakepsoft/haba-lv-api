@@ -10,7 +10,7 @@
 
 
     // This is a SwedBank code-card example. There are two types of SwedBank code-cards in existance.
-    // The older ones which have 24 numbers and the new ones which have more than 70.
+    // The older ones have 24 numbers, the new ones have more than 70.
     //
     // These particular codes are not real and are provided as an example.
     // In order to be able to use HabaLV API you must fill this array with your own codes.
