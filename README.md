@@ -26,7 +26,7 @@ install on yum based systems:
 ```
 
 
-Composer
+Using Composer
 -
 
 Add repository to `composer.json` file 
@@ -44,7 +44,7 @@ instruct composer to download the latest version
     }
 ```
 
-Usage without Composer
+Without Composer
 -
 
 Just download [HabaLV.php](https://raw.githubusercontent.com/xakepsoft/haba-lv-api/master/src/HabaLV.php) and include it in your php file
