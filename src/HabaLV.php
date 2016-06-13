@@ -373,25 +373,18 @@
 
             if( preg_match( "/<table[^>]*id=\"tblCurrentAccounts\"[^>]*>.*<tr[^>]*>.*(<tr[^>]*>.*)<\/table/Usiu" , $html, $tmp ) > 0 )
             {
-                //print_r( $tmp ); exit();
                 if( preg_match_all ( "/<tr[^>]*>(.*)<\/tr/Usiu" , $tmp[1], $trs , PREG_SET_ORDER ) > 0 )
                 {
                     $acc = '';
                     foreach( $trs as $tr )
                     {
-                        //if( preg_match( "/<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>/Usiu" , $tr[1], $td ) > 0 )
-                        //{
                             if( preg_match( "/<a[^>]*'account','(.*)'[^>]*>(.*)<\/a>(.*)</Usiu" , $tr[1], $tmp ) > 0 )
                             {
                                 $acc = trim( $tmp[2] );
                                 $ret_val[ $acc ]['name'] = trim( str_replace( array("\r","\n","\xA0","\xC2"),'', $tmp[3] ) );
                                 $ret_val[ $acc ]['account'] = trim( $tmp[1] );
                             }
-                        //    if(''!=$acc)
-                        //        $ret_val[$acc]['currency'][trim($td[3])]=array(trim($td[2]),trim($td[4]),trim(strip_tags($td[5])),trim($td[6]));
-                        //}
                     }
-                    //print_r($ret_val);exit();
                 }else return $this->error( self::ERR_PARSE_ACC , __LINE__);
             }else return $this->error( self::ERR_FIND_ACC , __LINE__);
             return $this->accounts = $ret_val;
