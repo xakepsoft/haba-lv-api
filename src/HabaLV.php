@@ -215,6 +215,22 @@
                 return $this->error( self::ERR_SYS, __LINE__ );
 
             if(!$form = $this->parse_form( $html, 'mainForm' )) return $this->error( self::ERR_READ_FORM , __LINE__);
+            $post_data = $this->prepare_post_data( $form['fields'] , array(
+                    'field1'=>'changeRemitterAccount','value1'=>'1','timestamp'=>time().rand(100,555),'account'=>$account,'definedPaymentId'=>'null',
+                    'payment.urgent'=>$urgent,'payment.beneficiaryName'=>$p['benefic'],'payment.beneficiaryBankCode'=>$bic,'detailsChooser'=>'details',
+                    'payment.creditor.partyType'=>$reg_type,'payment.creditor.idType'=>$id_type,'payment.creditor.identificationNumber'=>$reg_num,
+                    'payment.currency'=>$currency,'payment.details'=>trim($p['details']),'payment.creditorReferenceNumber'=>'','payment.bopCode'=>'',
+                    'payment.beneficiaryResidenceCountry'=>'LV','payment.endToEndId'=>'','payment.ultimateDebtor.name'=>'', 
+                    'payment.ultimateDebtor.partyType'=>'NONE','payment.ultimateDebtor.idType'=>'NONE','payment.ultimateDebtor.identificationNumber'=>'',
+                    'payment.ultimateCreditor.name'=>'','payment.ultimateCreditor.partyType'=>'NONE','payment.ultimateCreditor.idType'=>'NONE', 
+                    'payment.ultimateCreditor.identificationNumber'=>''
+                ), array( 'payment.amount' => $p['amount'] , 'payment.beneficiaryAccountNumber' => trim( $p['dst_acc'] ) )
+            );
+            unset( $post_data['save'] , $post_data['validate_payment'] );
+            if(!$html = $this->post_to_url( self::$url.'/private/d2d/payments2/domestic/new;' . $this->j_session , $post_data ))
+            return $this->error( self::ERR_SYS, __LINE__);
+
+            if(!$form = $this->parse_form( $html, 'mainForm' )) return $this->error( self::ERR_READ_FORM , __LINE__);
 
             $post_data = $this->prepare_post_data( $form['fields'] , array(
                     'field1'=>'validate_payment','value1'=>'true','timestamp'=>time().rand(100,555),'account'=>$account,'definedPaymentId'=>'null',
@@ -234,13 +250,16 @@
 
             if( FALSE !== $error = self::parse_error( $html )) return $this->error( $error , __LINE__);
 
-            if( preg_match( "/<div[^>]*\"challengeResponseBlock\"[^>]*>.*<img[^>]*src=\"(\/password.*)\"/Usiu" , $html, $tmp ) > 0 )
+            if( !isset($this->accounts[ $p['dst_acc'] ]))
             {
-                file_put_contents( $tmpfname = tempnam( self::get_temp_dir(), 'gif_' ) , $this->read_from_url( self::$url . $tmp[1] ) , FILE_APPEND );
-                if(!$this->captcha = (int)self::read_captcha( $tmpfname  ))return $this->error( self::ERR_OCR , __LINE__ );
-                @unlink( $tmpfname );
+                if( preg_match( "/<div[^>]*\"challengeResponseBlock\"[^>]*>.*<img[^>]*src=\"(\/password.*)\"/Usiu" , $html, $tmp ) > 0 )
+                {
+                    file_put_contents( $tmpfname = tempnam( self::get_temp_dir(), 'gif_' ) , $this->read_from_url( self::$url . $tmp[1] ) , FILE_APPEND );
+                    if(!$this->captcha = (int)self::read_captcha( $tmpfname  ))return $this->error( self::ERR_OCR , __LINE__ );
+                    @unlink( $tmpfname );
+                }
+                else return $this->error( self::ERR_FIND_CAPTCHA, __LINE__ );
             }
-            else return $this->error( self::ERR_FIND_CAPTCHA, __LINE__ );
 
             if(!$form = $this->parse_form( $html, 'mainForm' )) return $this->error( self::ERR_READ_FORM, __LINE__ );
 
@@ -354,23 +373,25 @@
 
             if( preg_match( "/<table[^>]*id=\"tblCurrentAccounts\"[^>]*>.*<tr[^>]*>.*(<tr[^>]*>.*)<\/table/Usiu" , $html, $tmp ) > 0 )
             {
+                //print_r( $tmp ); exit();
                 if( preg_match_all ( "/<tr[^>]*>(.*)<\/tr/Usiu" , $tmp[1], $trs , PREG_SET_ORDER ) > 0 )
                 {
                     $acc = '';
                     foreach( $trs as $tr )
                     {
-                        if( preg_match( "/<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>/Usiu" , $tr[1], $td ) > 0 )
-                        {
-                            if( preg_match( "/<a[^>]*'account','(.*)'[^>]*>(.*)<\/a>(.*)$/Usiu" , $td[1], $tmp ) > 0 )
+                        //if( preg_match( "/<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>\s*<td[^>]*>(.*)<\/td>/Usiu" , $tr[1], $td ) > 0 )
+                        //{
+                            if( preg_match( "/<a[^>]*'account','(.*)'[^>]*>(.*)<\/a>(.*)</Usiu" , $tr[1], $tmp ) > 0 )
                             {
                                 $acc = trim( $tmp[2] );
                                 $ret_val[ $acc ]['name'] = trim( str_replace( array("\r","\n","\xA0","\xC2"),'', $tmp[3] ) );
                                 $ret_val[ $acc ]['account'] = trim( $tmp[1] );
                             }
-                            if(''!=$acc)
-                                $ret_val[$acc]['currency'][trim($td[3])]=array(trim($td[2]),trim($td[4]),trim(strip_tags($td[5])),trim($td[6]));
-                        }
+                        //    if(''!=$acc)
+                        //        $ret_val[$acc]['currency'][trim($td[3])]=array(trim($td[2]),trim($td[4]),trim(strip_tags($td[5])),trim($td[6]));
+                        //}
                     }
+                    //print_r($ret_val);exit();
                 }else return $this->error( self::ERR_PARSE_ACC , __LINE__);
             }else return $this->error( self::ERR_FIND_ACC , __LINE__);
             return $this->accounts = $ret_val;
@@ -498,5 +519,4 @@
         }
 
     }
-
 
