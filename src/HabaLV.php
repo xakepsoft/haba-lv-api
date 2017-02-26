@@ -393,7 +393,7 @@
         static function read_captcha( $f )
         {
             return str_replace( array('l','S','s','G','g','o','O','A'), array('1','5','5','6','9','0','0','4'),
-                trim( shell_exec( "giftopnm '$f' | ocrad -s5 --filter=numbers" ) ) );
+                trim( shell_exec( "pngtopnm -mix '$f' | ocrad -s5 --filter=numbers" ) ) );
         }
         private function read_from_url( $url )
         {
