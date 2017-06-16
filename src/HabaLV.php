@@ -4,7 +4,7 @@
 
     class HabaLV
     {
-        static  $url = 'https://ib.swedbank.lv';
+        static  $url = 'https://www.swedbank.lv';
         private $login = '';
         private $pswrd = '';
         private $curl = NULL; 
